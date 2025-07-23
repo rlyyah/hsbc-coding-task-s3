@@ -51,11 +51,11 @@ test_vwap: test_vwap,(count calculate_vwap[time_range_list; fx_list; data_table]
 
 time_range_list:(2025.06.01; 2025.06.01);
 fx_list: `USD;
-test_vwap: test_vwap,(calculate_vwap[time_range_list; fx_list; data_table][`USD][`px] - 0.2664507) < 0.0000001;
+test_vwap: test_vwap,abs((calculate_vwap[time_range_list; fx_list; data_table][`USD][`px] - 0.2664507)) < 0.0000001;
 
 time_range_list:(2025.06.01; 2025.06.01);
 fx_list: `ALL;
-test_vwap: test_vwap,(calculate_vwap[time_range_list; fx_list; data_table][`ALL][`px] - 23.35117) < 0.0000001;
+test_vwap: test_vwap,abs((calculate_vwap[time_range_list; fx_list; data_table][`ALL][`px] - 23.35117)) < 0.0000001;
 
 passed_percent:(100*(sum test_vwap)%(count test_vwap));
 passed_percent: string passed_percent;
