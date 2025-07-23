@@ -61,7 +61,7 @@ To start a **q** process and load the functions:
 
 1. Navigate to the project root folder:
    ```bash
-   cd coding-task-s3
+   cd hsbc-coding-task-s3-master
    ```
 
 2. **Run exercise 1:**
