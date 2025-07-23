@@ -13,7 +13,7 @@ create_vector: {
 // Handling input arguments
 args: .Q.opt .z.x;
 t:args[`time][0];
-$[count t = 8; t: "V"$t; t: (time_sec + 1?24:00:00-18h$.z.t)[0]]
+$[count t = 8; t: "V"$t; t: (18h$.z.t + 1?24:00:00-18h$.z.t)[0]]
 
 // Create a vector based on the provided arguments
 result: create_vector[(0N; t)];
