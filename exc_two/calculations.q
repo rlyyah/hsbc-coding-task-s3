@@ -1,22 +1,36 @@
 // read data
 fx_table: ("DVSSIF"; enlist",") 0: `:/data/fx_data.csv; 
 
-show `table,`info;
-show 5#fx_table;
-show count fx_table;
+// this should be moved to the main.q file
+args: .Q.opt .z.x;
+//$[null args[`dates][0]; starting_date: select min date from fx_table; starting_date: "D"$args[`dates][0]];
+//$[null args[`dates][1]; ending_date: select max date from fx_table; ending_date: "D"$args[`dates][1]];
+//$[null args[`curr]; currencies: `EUR`GBP`USD`ALL; currencies: `$args[`curr]];
+starting_date: "D"$args[`dates][0];
+ending_date: "D"$args[`dates][1];
+time_range:(starting_date; ending_date);
+currencies: `$args[`curr];
 
 calculate_vwap: {
-    [time_rage; fx_list; data_table]
-    vwap: select (sum px*size) % (sum size) by fx from (select from data_table where (date >= time_rage[0] and date <= time_rage[1]) and fx in fx_list);
+    [time_range_list; fx_list; data_table]
+    vwap: select (sum px*size) % (sum size) by fx from (select from data_table where (date >= time_range_list[0] and date <= time_range_list[1]) and fx in fx_list);
     vwap};
 
-vwap_result: calculate_vwap[(2025.06.01; 2025.06.30); (`EUR`GBP); fx_table];
-show vwap_result;
-
 calculate_twap: {
-    [time_rage; fx_list; data_table]
-    twap: select avg px4 by fx from (select min px, max px, first px, last px, (min px + max px + first px + last px)%4 by date, fx from data_table where (date >= time_rage[0] and date <= time_rage[1]) and fx in fx_list);
+    [time_range_list; fx_list; data_table]
+    twap: select avg px4 by fx from (select min px, max px, first px, last px, (min px + max px + first px + last px)%4 by date, fx from data_table where (date >= time_range_list[0] and date <= time_range_list[1]) and fx in fx_list);
     twap};
 
-twap_result: calculate_twap[(2025.06.01; 2025.06.30); (`EUR`GBP); fx_table];
+twap_result: calculate_twap[time_range; currencies; fx_table];
+vwap_result: calculate_vwap[time_range; currencies; fx_table];
+
+show "Dates and curriences:";
+show time_range;
+show currencies
+show "TWAP Result:";
 show twap_result;
+show "--------------------";
+show "VWAP Result:";
+show vwap_result
+show "--------------------";
+
