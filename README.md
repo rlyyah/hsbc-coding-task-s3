@@ -1,42 +1,126 @@
+# Coding Task S3
 
-1. An input file with data you have created in csv format
+![Language](https://img.shields.io/badge/language-Q-lightgrey.svg)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
-Generated data has been saved in:
-./exc_two/data/fx_data.csv
+---
 
-Generated consists of 100000 transactions and 6 columns: 
-- date: randomly generated date of the transation starting from 2025.06.01 and finishing on 2025.07.01,
-- time: randomly generated time of the transaction starting from 00:00:00 and finishing on 23:59:59, 
-- slug: column is of form "ABC/PQR" where ABC and PQR are standard active currency codes as of ISO 4217. currency contains a currency code which is the unit of the value in the tables. For example, if slug is PLN/USD and fx is USD, it means that 1 pln = px USD. Mapped based on randomly generated vector with 4 values.
-- fx: currency available EUR, USD, GPB and ALL. Mapped based on randomly generated vector with 4 values.
-- size: randomly generated size of transaction.  
-- px: randomly generated unit price of transaction.
+## Table of Contents
+- [1. Input File](#1-input-file)
+- [2. Functions: VWAP & TWAP](#2-functions-vwap--twap)
+- [3. Running the Q Process](#3-running-the-q-process)
+- [4. Examples](#4-examples)
+- [5. Tests](#5-tests)
+- [6. Requirements](#6-requirements)
+- [7. License](#7-license)
 
-For more information head to the ./exc_two/generate_csv.q file.
+---
 
-2. A function which, given a time range and a list of symbols as inputs, returns the
-VWAP (TWAP) for each of these symbols as a table
+## 1. Input File
 
-Functions are located in the ./exc_two/calculations.q file as "calculate_vwap" and "calculate_twap".
+The generated CSV data file is located at:
 
-3. A command to start a q process which will load this function.
+```
+exc_two/data/fx_data.csv
+```
 
-- Locate youself in the same folder as the main.q script (which is located in the main folder "coding-task-s3");
-- To run excercise one function use:
-"q ./main.q -exc 1 -time provided_time" 
-(example: "q ./main.q -exc 1 -time 20:00:00")
-- To run excercise two function use:
-"q ./main.q -exc 2 -dates starting_date ending_date -curr curr1 curr2 curr3 curr4" 
+This file contains **100,000 transactions** and 6 columns:
 
-4. Example of how to call the function
+- **`date`** – randomly generated date of the transaction, between `2025.06.01` and `2025.07.01`.
+- **`time`** – randomly generated time of the transaction, between `00:00:00` and `23:59:59`.
+- **`slug`** – of the form `ABC/PQR`, where `ABC` and `PQR` are ISO 4217 currency codes.  
+  *Example*: If `slug = PLN/USD` and `fx = USD`, then `1 PLN = px USD`.
+- **`fx`** – currency type, chosen randomly from `EUR`, `USD`, `GBP`, `ALL`.
+- **`size`** – randomly generated transaction size.
+- **`px`** – randomly generated unit price of the transaction.
 
-- excercise 1 example:
-"q ./main.q -exc 1 -time 20:00:00"
+For more information, see:
 
-- excercise 2 example: 
-"q ./main.q -exc 2 -dates 2025.06.01 2025.06.15 -curr EUR USD GBP ALL"
+```
+exc_two/generate_csv.q
+```
 
-5. Test(s) to ensure validity of code
-Tests are located in the ./tests.q file.
-to run tests use:
-"q ./tests.q"
+---
+
+## 2. Functions: VWAP & TWAP
+
+The file with VWAP and TWAP functions:
+
+```
+exc_two/calculations.q
+```
+
+- **`calculate_vwap`** – calculates VWAP for a given time range and list of symbols.
+- **`calculate_twap`** – calculates TWAP for a given time range and list of symbols.
+
+---
+
+## 3. Running the Q Process
+
+To start a **q** process and load the functions:
+
+1. Navigate to the project root folder:
+   ```bash
+   cd coding-task-s3
+   ```
+
+2. **Run exercise 1:**
+   ```bash
+   q main.q -exc 1 -time <provided_time>
+   ```
+   Example:
+   ```bash
+   q main.q -exc 1 -time 20:00:00
+   ```
+
+3. **Run exercise 2:**
+   ```bash
+   q main.q -exc 2 -dates <start_date> <end_date> -curr <curr1> <curr2> <curr3> <curr4>
+   ```
+   Example:
+   ```bash
+   q main.q -exc 2 -dates 2025.06.01 2025.06.15 -curr EUR USD GBP ALL
+   ```
+
+---
+
+## 4. Examples
+
+- **Exercise 1:**
+  ```bash
+  q main.q -exc 1 -time 20:00:00
+  ```
+
+- **Exercise 2:**
+  ```bash
+  q main.q -exc 2 -dates 2025.06.01 2025.06.15 -curr EUR USD GBP ALL
+  ```
+
+---
+
+## 5. Tests
+
+Test scripts are located in:
+
+```
+tests.q
+```
+
+To run tests:
+```bash
+q tests.q
+```
+
+---
+
+## 6. Requirements
+
+- **q language environment** (tested with version >= 4.x).
+- A Unix-like environment or Windows with q installed.
+- Generated `fx_data.csv` file (created with `generate_csv.q`):
+  ```bash
+  q exc_two/generate_csv.q
+  ```
+
+---
+
