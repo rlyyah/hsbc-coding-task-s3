@@ -1,2 +1,0 @@
-system "l calculations.q";
-
