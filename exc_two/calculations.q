@@ -7,7 +7,7 @@ calculate_vwap: {
 
 calculate_twap: {
     [time_range_list; fx_list; data_table]
-    twap: select avg px4 by fx from (select (min px + max px + first px + last px)%4 by date, fx from data_table where date within time_range_list, fx in fx_list);
+    twap: select avg px4 by fx from (select min px, max px, first px, last px, (min px + max px + first px + last px)%4 by date, fx from data_table where date within time_range_list, fx in fx_list);
     twap};
 
 // read data
