@@ -96,3 +96,5 @@ passed_percent: string passed_percent;
 show "TWAP test:";
 show "test taken:", string count test_twap;
 show "test passed:",passed_percent,"%";
+
+exit 0;
