@@ -1,11 +1,11 @@
 # Coding Task S3
 
 ![Language](https://img.shields.io/badge/language-Q-lightgrey.svg)
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
 ---
 
 ## Table of Contents
+- [0.5. Excercise one](#0.5-excercise-one)
 - [1. Input File](#1-input-file)
 - [2. Functions: VWAP & TWAP](#2-functions-vwap--twap)
 - [3. Running the Q Process](#3-running-the-q-process)
@@ -13,6 +13,16 @@
 - [5. Tests](#5-tests)
 - [6. Requirements](#6-requirements)
 - [7. License](#7-license)
+
+---
+
+## 0.5 Excercise one
+
+```
+exc_one/excercise_one.q
+```
+
+Description: TBD
 
 ---
 
@@ -64,16 +74,9 @@ To start a **q** process and load the functions:
    cd hsbc-coding-task-s3-master
    ```
 
-2. **Run exercise 1:**
-   ```bash
-   q main.q -exc 1 -time <provided_time>
-   ```
-   Example:
-   ```bash
-   q main.q -exc 1 -time 20:00:00
-   ```
+2. **Run exercise 2:**
 
-3. **Run exercise 2:**
+  Base version:
    ```bash
    q main.q -exc 2 -dates <start_date> <end_date> -curr <curr1> <curr2> <curr3> <curr4>
    ```
@@ -81,21 +84,27 @@ To start a **q** process and load the functions:
    ```bash
    q main.q -exc 2 -dates 2025.06.01 2025.06.15 -curr EUR USD GBP ALL
    ```
+  Interval version:
+   ```bash
+   q main.q -exc 2 -dates <start_date> <end_date> -curr <curr1> <curr2> <curr3> <curr4>  -int <interval_value>
+   ```
+      Example:
+   ```bash
+   q main.q -exc 2 -dates 2025.06.01 2025.06.15 -curr EUR USD GBP ALL -int 1
+   ```
 
 ---
 
 ## 4. Examples
 
-- **Exercise 1:**
-  ```bash
-  q main.q -exc 1 -time 20:00:00
-  ```
-
 - **Exercise 2:**
   ```bash
   q main.q -exc 2 -dates 2025.06.01 2025.06.15 -curr EUR USD GBP ALL
   ```
-
+- **Exercise 2 with intervals:**
+   ```bash
+   q main.q -exc 2 -dates 2025.06.01 2025.06.15 -curr EUR USD GBP ALL -int 1
+   ```
 ---
 
 ## 5. Tests
@@ -115,7 +124,7 @@ q tests.q
 
 ## 6. Requirements
 
-- **q language environment** (tested with version >= 4.x).
+- **q language environment** (tested with version = 4.1).
 - A Unix-like environment or Windows with q installed.
 - Generated `fx_data.csv` file (created with `generate_csv.q`):
   ```bash
