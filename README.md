@@ -16,13 +16,18 @@
 
 ---
 
-## 0.5 Excercise one
+## 0.5. Excercise one
 
 ```
 exc_one/excercise_one.q
 ```
 
-Description: TBD
+Description:
+
+Create a vector of times in ascending order: the vector should have the current time plus increments of 2 seconds. Then pick and arbitrary time t* find its position in the vector adjust the vector to contain only elements greater or equal to t including t itself.
+
+* arbiraty time t is randomly chosen from the existing vector
+** there is a previous version in which t is being provided. I wasn't sure which one proper but at least I find this version much cleaner.
 
 ---
 
@@ -88,7 +93,7 @@ To start a **q** process and load the functions:
    ```bash
    q main.q -exc 2 -dates <start_date> <end_date> -curr <curr1> <curr2> <curr3> <curr4>  -int <interval_value>
    ```
-      Example:
+   Example:
    ```bash
    q main.q -exc 2 -dates 2025.06.01 2025.06.15 -curr EUR USD GBP ALL -int 1
    ```
