@@ -1,5 +1,5 @@
 // read data
-fx_table: ("DVSSIF"; enlist",") 0: `:/data/fx_data.csv; 
+fx_table: ("DVSSIF"; enlist",") 0: `:exc_two/data/fx_data.csv; 
 
 // This code is part of a Q script that calculates TWAP and VWAP for given currencies over a specified date range.
 // It reads data from a CSV file and processes it to compute the required metrics.
