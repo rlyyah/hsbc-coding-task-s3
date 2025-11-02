@@ -28,11 +28,11 @@ $[null "J"$args[`int][0]; exit 0; interval: "J"$args[`int][0]]
 days:{x+interval}\[7h$(floor (ending_date-starting_date)%interval);(starting_date;starting_date)]
 currencies_scan:{x}\[7h$(floor (ending_date-starting_date)%interval);currencies]
 
-vwap_result_daily: calculate_vwap'[days;currencies_scan];
+vwap_result_interval: calculate_vwap'[days;currencies_scan];
 
-d:currencies!flip {x'[currencies][`px]} each vwap_result_daily;
+result_dict:currencies!flip {x'[currencies][`px]} each vwap_result_interval;
 dates: starting_date + interval * til floor ((ending_date-starting_date)%interval)+1
-table: ([] dates:dates)^flip d;
+table: ([] dates:dates)^flip result_dict;
 
 save `:output_data/table.csv 
 
